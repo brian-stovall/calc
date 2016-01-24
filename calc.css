@@ -1,0 +1,38 @@
+* {
+}
+
+body {
+	background-color:pink;
+}
+
+.well {
+	top:10vh;
+	background-color:purple;
+	border-radius:10% 10% 5% 5%;
+	padding-left:2vw;
+}
+
+.btn {
+	width:7vw;
+	height:2em;
+	font-size:2vw;
+	margin-top:1em;
+	border-radius:13%;
+	text-align:center;
+}
+
+.row {
+	margin-left:.8vw;
+}
+
+
+.label-default {
+	text-align:right;
+	height:15vh;
+	font-size:8vmin;
+	padding-top:3vmin;
+	margin-bottom:5vh;
+	margin-left:-.3vw;
+	border:1px solid #333;
+}
+
