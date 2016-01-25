@@ -29,8 +29,8 @@ body {
 .label-default {
 	text-align:right;
 	height:15vh;
-	font-size:8vmin;
-	padding-top:3vmin;
+	font-size:7vmin;
+	padding-top:4vmin;
 	margin-bottom:5vh;
 	margin-left:-.3vw;
 	border:1px solid #333;
