@@ -4,15 +4,37 @@ document.addEventListener('DOMContentLoaded', function() {
 	var buttons = document.getElementsByClassName('btn');
 
 	//the register stores the state of the calculator
-	var register = screen.textContent;
+	var register;
+
+	//stores the last operation for chaining
+	var lastOp;
+
+	//a switch for tracking whether or not the screen needs to refresh
+	var refresh = false;
 
 	//assign a click handler to all buttons
 	for (var i=0; i < buttons.length; i++) {
-		if (buttons[i].textContent.match(/[\d\.]/))
-				buttons[i].onclick = function() {screen.textContent = screen.textContent + this.textContent;};			
+		var instruction = buttons[i].textContent;
+		if (instruction.match(/[\d\.]/)) {
+				buttons[i].onclick = function() {
+					if (refresh) {
+						screen.textContent = '';
+						refresh = false;
+					}
+					screen.textContent = screen.textContent + this.textContent;};			
+				}
+		else if (instruction === 'CE') {
+			buttons[i].onclick = function() {
+				screen.textContent = ' ';
+			}
+		}
 		else buttons[i].onclick = function() {
-							 register = calc(register, this.textContent, screen.textContent);
-							 screen.textContent = register;
+				if (!register) register = screen.textContent;
+				if (lastOp)
+					register = calc(register, lastOp, screen.textContent);
+				lastOp = this.textContent;
+			  screen.textContent = register;
+				refresh = true;
 							};
 	}
 
