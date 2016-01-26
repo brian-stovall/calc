@@ -15,14 +15,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	//assign a click handler to all buttons
 	for (var i=0; i < buttons.length; i++) {
 		var instruction = buttons[i].textContent;
-		if (instruction.match(/[\d\.]/)) {
+		if (instruction.match(/[\d.]/)) {
 				buttons[i].onclick = function() {
 					if (refresh) {
 						screen.textContent = '';
 						refresh = false;
 					}
-					screen.textContent = screen.textContent + this.textContent;};			
-				}
+					//use if this.textContent to make '.' rules.
+					screen.textContent = screen.textContent + this.textContent;
+				}			
+		}
 		else if (instruction === 'CE') {
 			buttons[i].onclick = function() {
 				screen.textContent = ' ';
