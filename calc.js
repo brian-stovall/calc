@@ -12,27 +12,45 @@ document.addEventListener('DOMContentLoaded', function() {
 	//a switch for tracking whether or not the screen needs to refresh
 	var refresh = false;
 
+	//a single space is the content of an empty screen
+	screen.textContent = ' ';
+
 	//assign a click handler to all buttons
 	for (var i=0; i < buttons.length; i++) {
 		var instruction = buttons[i].textContent;
+		//all the numbers and decimal place
 		if (instruction.match(/[\d.]/)) {
 				buttons[i].onclick = function() {
 					if (refresh) {
-						screen.textContent = '';
+						screen.textContent = ' ';
 						refresh = false;
 					}
-					//use if this.textContent to make '.' rules.
-					screen.textContent = screen.textContent + this.textContent;
+					//only allow one decimal place
+					if (this.textContent !== '.' || !screen.textContent.match(/\./))
+						screen.textContent = screen.textContent + this.textContent;
 				}			
 		}
+		//special cases
 		else if (instruction === 'CE') {
 			buttons[i].onclick = function() {
 				screen.textContent = ' ';
 			}
 		}
+		else if (instruction === 'AC') {
+			buttons[i].onclick = function() {
+				screen.textContent = ' ';
+				register = null;
+			}
+		}
+		//operators
 		else buttons[i].onclick = function() {
-				if (!register) register = screen.textContent;
-				if (lastOp)
+				if (!register) {
+					if (screen.textContent === ' ') 
+						register = 0;
+					else
+						register = screen.textContent;
+				}
+				if (lastOp && screen.textContent !== ' ')
 					register = calc(register, lastOp, screen.textContent);
 				lastOp = this.textContent;
 			  screen.textContent = register;
