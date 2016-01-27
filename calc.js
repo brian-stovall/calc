@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var buttons = document.getElementsByClassName('btn');
 
 	//the register stores the state of the calculator
-	var register;
+	var register = null;
 
 	//stores the last operation for chaining
 	var lastOp;
@@ -50,11 +50,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		//operators
 		else buttons[i].onclick = function() {
-				if (!register) {
-						register = 0;
-				}
+				//ignore if there isn't anything going on 
+				if (register === null && screen.textContent == ' ') return;
+				//chain and display if we had something already
 				if (lastOp && screen.textContent !== ' ')
 					register = calc(register, lastOp, screen.textContent);
+				//set up the initial register when empty
+				if (register === null) register = screen.textContent;
 				lastOp = this.textContent;
 			  screen.textContent = register;
 				refresh = true;
