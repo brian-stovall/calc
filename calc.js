@@ -42,6 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
 				register = null;
 			}
 		}
+		else if (instruction === '%') {
+			buttons[i].onclick = function() {
+				if (screen.textContent !== ' ')
+				screen.textContent = parseFloat(screen.textContent) / 100;
+			}
+		}
 		//operators
 		else buttons[i].onclick = function() {
 				if (!register) {
@@ -63,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	//operand and returns the result
 	function calc(n1, oper, n2) {
 		//a table mapping characters to functions
-		var optable = { '%': (m, n) => { return m % n; },
+		var optable = { 'mod': (m, n) => { return m % n; },
 										'/': (m, n) => { return m / n; },
 										'*': (m, n) => { return m * n; },
 										'-': (m, n) => { return m - n; },
