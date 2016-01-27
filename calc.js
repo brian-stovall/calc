@@ -51,10 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		//operators
 		else buttons[i].onclick = function() {
 				if (!register) {
-					if (screen.textContent === ' ') 
 						register = 0;
-					else
-						register = screen.textContent;
 				}
 				if (lastOp && screen.textContent !== ' ')
 					register = calc(register, lastOp, screen.textContent);
@@ -63,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				refresh = true;
 							};
 	}
-
 
 	//calculation function - takes three strings: two numbers and an 
 	//operand and returns the result
